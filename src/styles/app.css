@@ -1,0 +1,8 @@
+.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
+  position: fixed;
+  height: 700px;
+  width: 80%;
+  left: 140px;
+  margin: 0 auto;
+
+}
