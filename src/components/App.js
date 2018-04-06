@@ -6,11 +6,28 @@ class App extends Component {
   constructor () {
     super()
     this.state = {
-      lat: 51.505,
-      lng: -0.09,
-      zoom: 13
+      lat: null,
+      lng: null,
+      zoom: 13,
+      posReceived: false
     }
   };
+
+  componentDidMount() {
+    this.getPosition();
+  }
+
+  getPosition () {
+    navigator.geolocation.getCurrentPosition((pos) => {
+      if(pos.coords) {
+        this.setState({
+          lat: pos.coords.latitude,
+          lng: pos.coords.longitude,
+          posReceived: true,
+        })
+      }
+    })
+    }
 
   renderMap () {
     const { lat, lng, zoom } = this.state;
@@ -34,10 +51,11 @@ class App extends Component {
     )
 }
   render () {
+    const { posReceived } = this.state;
     return (
       <div>
         <h1>Maps</h1>
-        { this.renderMap() }
+        { posReceived && this.renderMap() }
       </div>
     )
   }
