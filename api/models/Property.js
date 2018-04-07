@@ -35,5 +35,5 @@ const PropertySchema = new Schema({
 
 });
 
-const Property = mongoose.model('Prpoerty', PropertySchema);
-module.exports = School;
+const Property = mongoose.model('Property', PropertySchema);
+module.exports = Property;

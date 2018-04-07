@@ -5,6 +5,7 @@ const path       = require('path');
 const bodyParser = require('body-parser');
 const mongoose   = require('mongoose');
 const keys       = require('./config/keys');
+const Property   = require('./api/models/Property');
 
 const app = express();
 
