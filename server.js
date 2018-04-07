@@ -25,7 +25,6 @@ mongoose.connection.on('error', err => {
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
 // --------------  END MIDDLEWARE ---------------
 
 
@@ -35,6 +34,13 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something broke!');
 });
 // --------------- END ERROR HANDLER -------------
+
+
+// ------------------ ROUTES --------------------
+const propertyRoutes = require('./api/routes/propertyRoutes');
+app.use('/api/property', propertyRoutes)
+// ------------------ END ROUTES ----------------
+
 
 
 //  ----------------   PORT SETUP ---------------
