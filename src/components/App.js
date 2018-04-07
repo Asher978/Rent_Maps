@@ -1,74 +1,108 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import _ from 'lodash';
+
+import '../styles/form.css';
 import '../styles/app.css';
-import { Map, Marker, Popup, TileLayer, Tooltip } from 'react-leaflet';
-import MarkerClusterGroup from 'react-leaflet-markercluster';
+
+import Nav from './Nav';
+import PropertyMap from './PropertyMap';
+import AddProperty from './AddProperty';
+
 
 class App extends Component {
-  constructor () {
-    super()
-    this.state = {
-      lat: 40.7128,
-      lng: -74.0060,
-      zoom: 14,
-      posReceived: true
-    }
+  state = {
+    currentPage: "",
+    title: "",
+    bedrooms: "",
+    rent: "",
+    address: "",
+    coordinates: [],
+    coordsLoaded: false
+  }
+
+  handleDecidePage = (currentPage) => {
+    this.setState({ currentPage });
   };
 
-  componentDidMount() {
-    console.log("CDM")
-    this.getPosition();
+  handleInputChange = e => {
+    e.preventDefault();
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({ [name]: value });
+  };
+
+  handleSubmitProperty = async e => {
+    e.preventDefault();
+
+    // deconstruct the address and geocode to get coords
+    const { address } = this.state;
+    await this.getPropertyCoords(address);
+
+    // TODO ---- Pictures uploading to S3
+    
+    const { title, bedrooms, rent, coordinates, coordsLoaded } = this.state;   
+    
+    // check if state was set with the returned coords before sending to DB
+    if(!coordsLoaded) return;
+    
+    const response = await axios.post('/api/property/add', { title, bedrooms, rent, address, coordinates })
+
+    // TODO -- Redirect here to the Map page
   }
 
-  getPosition = () => {
-    navigator.geolocation.getCurrentPosition((pos) => {
-      console.log(pos)
-      if(pos.coords) {
-        this.setState({
-          lat: pos.coords.latitude,
-          lng: pos.coords.longitude,
-          posReceived: true,
-        })
-      } else {
-        this.setState({ posReceived: true })
-      }
-    })
+  getPropertyCoords = async address => {
+
+    try {
+      const results = await geocodeByAddress(address);
+
+      const latLng = await getLatLng(results[0]);
+      if (_.isEmpty(latLng)) return;
+      this.setState({
+        coordinates: [latLng.lat, latLng.lng],
+        coordsLoaded: true
+      })
+    } catch(err) {
+      console.log(err)
+    }
   }
 
-  renderMap () {
-    const { lat, lng, zoom } = this.state;
-    const position = [lat, lng];
-
-    return (
-        <Map center={position} zoom={zoom}>
-            <TileLayer
-              attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-
-            <MarkerClusterGroup>
-              <Marker position={[49.8397, 24.0297]} />
-              <Marker position={[52.2297, 21.0122]} />
-              <Marker position={[51.5074, -0.0901]} />
-            </MarkerClusterGroup>
-
-
-            {/* <Marker position={position}>
-              <Tooltip permanent>
-                <span>Hello...</span>
-              </Tooltip>
-              <Popup>
-                <span>Ash<br/>S.</span>
-              </Popup>
-            </Marker> */}
-        </Map>
-    )
-}
   render () {
-    const { posReceived } = this.state;
+    const { currentPage, title, bedrooms, rent, address } = this.state;
     return (
       <div>
-        <h1>Maps</h1>
-        { posReceived && this.renderMap() }
+
+        <Nav />
+
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-md-3 col-md-offset-3">
+              <button className="btn" onClick={() => this.handleDecidePage('MAP')}>
+                View Properties on the Map
+              </button>
+            </div>
+            <div className="col-md-3 col-md-offset-1">
+              <button className="btn" onClick={() => this.handleDecidePage('ADD')}>
+                Add a Property
+              </button>
+            </div>
+          </div>
+        </div>
+
+        { 
+          currentPage === 'ADD' && <AddProperty
+                                     title={title}
+                                     bedrooms={bedrooms}
+                                     rent={rent}
+                                     address={address}
+                                     handleInputChange={this.handleInputChange}
+                                     handleSubmitProperty={this.handleSubmitProperty}
+                                   /> 
+        }
+
+        { currentPage === 'MAP' && <PropertyMap /> }
+
       </div>
     )
   }
