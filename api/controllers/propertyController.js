@@ -3,6 +3,7 @@ const mongoose = require('mongoose'),
       Property = mongoose.model('Property');
 
 const propertyController = {
+
   newProperty : (req, res) => {
     let body = _.pick(req.body, ['title', 'bedrooms', 'rent', 'pictures', 'address', 'coordinates']);
 
@@ -14,6 +15,13 @@ const propertyController = {
       .catch(err => {
         res.send(err);
       })
+  },
+
+  getAll : (req, res) => {
+    Property.find({}, (err, properties) => {
+      if (err) return res.send(err);
+      res.send(properties);
+    })
   }
 };
 
