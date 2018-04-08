@@ -49,6 +49,7 @@ class App extends Component {
     
     const response = await axios.post('/api/property/add', { title, bedrooms, rent, address, coordinates })
     console.log("after adding a property", response)
+    if (response.status === 200) { this.setState({ currentPage: 'MAP' }) }
 
     // TODO -- Redirect here to the Map page
   }
