@@ -29,7 +29,18 @@ module.exports = {
       }
     ]
   },
-  optimization: {
+
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: 'index.html'
+    }),
+  ]
+};
+
+if (process.env &&
+  process.env.NODE_ENV &&
+  process.env.NODE_ENV === 'production') {
+  const prodOptimization = {
     runtimeChunk: false,
     splitChunks: {
       cacheGroups: {
@@ -47,10 +58,7 @@ module.exports = {
         sourceMap: true
       })
     ]
-  },
-  plugins: [
-    new HtmlWebPackPlugin({
-      template: 'index.html'
-    }),
-  ]
+  };
+
+  config.optimization = prodOptimization;
 }
