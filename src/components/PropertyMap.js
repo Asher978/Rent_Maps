@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { Map, Marker, Popup, TileLayer, Tooltip } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 
@@ -7,12 +8,18 @@ class PropertyMap extends Component {
     lat: 40.7128,
     lng: -74.0060,
     zoom: 14,
-    posReceived: true
+    posReceived: true,
+    properties: null,
   }
 
-  componentDidMount() {
+  async componentDidMount () {
     console.log("CDM")
     this.getPosition();
+
+    const getProperties = await axios.get('/api/property');
+    if (getProperties.status === 200) {
+      this.setState({ properties: getProperties.data })
+    };
   }
 
   getPosition = () => {
@@ -30,6 +37,26 @@ class PropertyMap extends Component {
     })
   }
 
+  renderPropertyMarkers = () => {
+    const { properties } = this.state;
+
+    if (properties) {
+      return properties.map((property, i) => {
+        const { title, bedrooms, rent, coordinates } = property;
+        return (
+          <Marker key={i} position={coordinates}>
+            <Tooltip permanent>
+              <span>{title}</span>
+            </Tooltip>
+            <Popup>
+              <span>RENT: ${rent}<br/>BEDROOMS: {bedrooms}</span>
+            </Popup>
+          </Marker>
+        )
+      })
+    }
+  }
+
   renderMap () {
     const { lat, lng, zoom } = this.state;
     const position = [lat, lng];
@@ -42,20 +69,9 @@ class PropertyMap extends Component {
             />
 
             <MarkerClusterGroup>
-              <Marker position={[49.8397, 24.0297]} />
-              <Marker position={[52.2297, 21.0122]} />
-              <Marker position={[51.5074, -0.0901]} />
+              { this.renderPropertyMarkers() }
             </MarkerClusterGroup>
 
-
-            {/* <Marker position={position}>
-              <Tooltip permanent>
-                <span>Hello...</span>
-              </Tooltip>
-              <Popup>
-                <span>Ash<br/>S.</span>
-              </Popup>
-            </Marker> */}
         </Map>
     )
 }
