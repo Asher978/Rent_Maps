@@ -47,9 +47,12 @@ class App extends Component {
     // check if state was set with the returned coords before sending to DB
     if(!coordsLoaded) return;
     
-    const response = await axios.post('/api/property/add', { title, bedrooms, rent, address, coordinates })
-    console.log("after adding a property", response)
-    if (response.status === 200) this.handleDecidePage("MAP");
+    const response = await axios.post('/api/property/add', { title, bedrooms, rent, address, coordinates });
+    
+    if (response.status === 200) {
+      console.log("after adding a property", response)
+      this.handleDecidePage("MAP");
+    }
 
     // TODO -- Redirect here to the Map page
   }
