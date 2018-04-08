@@ -13,10 +13,11 @@ class PropertyMap extends Component {
   }
 
   async componentDidMount () {
-    console.log("CDM")
+    
     this.getPosition();
 
     const getProperties = await axios.get('/api/property');
+    console.log("MAP CDM property", getProperties)
     if (getProperties.status === 200) {
       this.setState({ properties: getProperties.data })
     };
