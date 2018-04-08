@@ -1,63 +1,80 @@
-import React from 'react';
+import React, {Component} from 'react';
+import Button from 'material-ui/Button';
+import TextField from 'material-ui/TextField';
 
-const AddProperty = props => {
-  const { title, bedrooms, rent, address, handleInputChange, handleSubmitProperty } = props;
-  return (
-    <div className="container add-property">
-      <div className="col-md-8 col-sm-offset-1">
-        <form role="form" onSubmit={handleSubmitProperty}>
-          <div className="form-group">
-            <input 
-              type="text"
-              name="title"
-              placeholder="Property name ... (bedroom, condo, building ....)"
-              className="form-control"
-              value={title}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="number"
-              name="bedrooms"
-              placeholder="bedrooms ... (1, 2, 3)"
-              className="form-control"
-              value={bedrooms}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="number"
-              name="rent"
-              placeholder="Total rent ... ($700, $900 ...)"
-              className="form-control"
-              onChange={handleInputChange}
-              value={rent}
-              required
-            />
-          </div>
+import Dialog, {
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  withMobileDialog
+} from 'material-ui/Dialog';
 
-          <div className="form-group">
-            <input
-              type="text"
-              name="address"
-              placeholder="Address... (123 main st, Flushing, NY 11355)"
-              className="form-control"
-              value={address}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
+class AddProperty extends Component {
 
-          <button type="submit" className="btn">Submit!</button>
-        </form>
-      </div>
-    </div>
-  )
-};
+  render() {
+    const { title, bedrooms, rent, address, handleInputChange, handleSubmitProperty, handleDecidePage } = this.props;
+    return (
+      <Dialog open>
+        <DialogTitle>Property Information</DialogTitle>
+        <DialogContent>
 
-export default AddProperty;
+          <DialogContentText>
+            Thank you in advance for providing information on your property. Please be assured that we will never share your personal credentials if there were any provided. 
+          </DialogContentText>
 
+          <TextField
+            margin="dense"
+            name="title"
+            label="Property name ... (bedroom, condo, building ....)"
+            type="text"
+            value={title}
+            onChange={handleInputChange}
+            fullWidth
+          />
+
+          <TextField
+            margin="dense"
+            name="bedrooms"
+            label="No of bedrooms ... (1, 2, 3)"
+            type="number"
+            value={bedrooms}
+            onChange={handleInputChange}
+            fullWidth
+          />
+
+          <TextField
+            margin="dense"
+            name="rent"
+            label="Total rent ... ($700, $900 ...)"
+            type="number"
+            value={rent}
+            onChange={handleInputChange}
+            fullWidth
+          />
+
+          <TextField
+            margin="dense"
+            name="address"
+            label="Address... (123 main st, Flushing, NY 11355)"
+            type="text"
+            value={address}
+            onChange={handleInputChange}
+            fullWidth
+          />
+
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => handleDecidePage("")} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleSubmitProperty} color="primary">
+            Submit
+          </Button>
+        </DialogActions>
+      </Dialog>
+    );
+  }
+}
+
+export default withMobileDialog()(AddProperty);
