@@ -19,7 +19,7 @@ class App extends Component {
     rent: "",
     address: "",
     coordinates: [],
-    coordsLoaded: false
+    coordsLoaded: false,
   }
 
   handleDecidePage = (currentPage) => {
@@ -48,6 +48,7 @@ class App extends Component {
     if(!coordsLoaded) return;
     
     const response = await axios.post('/api/property/add', { title, bedrooms, rent, address, coordinates })
+    console.log("after adding a property", response)
 
     // TODO -- Redirect here to the Map page
   }
