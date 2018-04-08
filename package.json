@@ -9,7 +9,7 @@
     "build-dev": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production",
     "prod": "NODE_ENV=production node server.js",
-    "build-prod": "webpack --config webpack.config.js -p --progress --colors",
+    "build-prod": "webpack --config webpack.config.js -p --progress --colors"
   },
   "author": "Ash S",
   "license": "ISC",
