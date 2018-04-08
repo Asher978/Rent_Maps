@@ -48,9 +48,9 @@ class App extends Component {
     if(!coordsLoaded) return;
     
     const response = await axios.post('/api/property/add', { title, bedrooms, rent, address, coordinates });
-    
+
     if (response.status === 200) {
-      console.log("after adding a property", response)
+      console.log("before page changed", response)
       this.handleDecidePage("MAP");
     }
 
