@@ -24,6 +24,7 @@ mongoose.connection.on('error', err => {
 
 // --------------  MIDDLEWARE  ---------------
 app.use(logger('dev'));
+app.use(express.static(path.join(__dirname, 'dist')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 // --------------  END MIDDLEWARE ---------------
