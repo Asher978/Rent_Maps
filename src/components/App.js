@@ -1,14 +1,49 @@
 import React, { Component } from 'react';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
+import purple from 'material-ui/colors/purple';
+import green from 'material-ui/colors/green';
 import axios from 'axios';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import _ from 'lodash';
 
-import '../styles/form.css';
+// import '../styles/form.css';
 import '../styles/app.css';
 
 import Nav from './Nav';
+import Drawer from './Drawer';
 import PropertyMap from './PropertyMap';
 import AddProperty from './AddProperty';
+
+const defaultTheme = createMuiTheme();
+const purpleTheme = createMuiTheme({
+  palette: {
+    primary: purple,
+    secondary: green
+  }
+});
+const fontTheme = createMuiTheme({
+  palette: {
+    secondary: purple,
+    primary: green,
+  },
+  typography: {
+    fontFamily: ['Courier', 'Helvetica'],
+  }
+});
+const themes = [defaultTheme, purpleTheme, fontTheme];
+const drawerWidth = 316;
+
+const styles = theme => ({
+  narrowContainer: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: `${drawerWidth}px`,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    })
+  }
+})
 
 
 class App extends Component {
@@ -20,7 +55,12 @@ class App extends Component {
     address: "",
     coordinates: [],
     coordsLoaded: false,
+    drawer: false,
+    theme: purpleTheme,
   }
+
+  toggleDrawer = () => {this.setState( {...this.state, drawer: !this.state.drawer } ) }
+  setTheme = (idx) => {this.setState( {...this.state, theme: themes[idx] } ) }
 
   handleDecidePage = (currentPage) => {
     this.setState({ currentPage });
@@ -79,43 +119,44 @@ class App extends Component {
   }
 
   render () {
-    const { currentPage, title, bedrooms, rent, address } = this.state;
+    const { currentPage, title, bedrooms, rent, address, drawer } = this.state;
+    const { classes } = this.props;
     return (
-      <div>
 
-        <Nav />
+      <MuiThemeProvider theme={this.state.theme}>
 
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-md-3 col-md-offset-3">
-              <button className="btn" onClick={() => this.handleDecidePage('MAP')}>
-                View Properties on the Map
-              </button>
-            </div>
-            <div className="col-md-3 col-md-offset-1">
-              <button className="btn" onClick={() => this.handleDecidePage('ADD')}>
-                Add a Property
-              </button>
-            </div>
-          </div>
+        <Drawer 
+          open={this.state.drawer}
+          toggleDrawer={this.toggleDrawer}
+          handleDecidePage={this.handleDecidePage}
+        />
+
+        <div className={drawer ? classes.narrowContainer : null}>
+          <Nav 
+            open={drawer}
+            toggleDrawer={this.toggleDrawer}
+            handleDecidePage={this.handleDecidePage}
+          />
         </div>
 
         { 
-          currentPage === 'ADD' && <AddProperty
-                                     title={title}
-                                     bedrooms={bedrooms}
-                                     rent={rent}
-                                     address={address}
-                                     handleInputChange={this.handleInputChange}
-                                     handleSubmitProperty={this.handleSubmitProperty}
-                                   /> 
+           currentPage === 'ADD' && <AddProperty
+                                      title={title}
+                                      bedrooms={bedrooms}
+                                      rent={rent}
+                                      address={address}
+                                      handleInputChange={this.handleInputChange}
+                                      handleSubmitProperty={this.handleSubmitProperty}
+                                      handleDecidePage={this.handleDecidePage}
+                                    />
         }
 
         { currentPage === 'MAP' && <PropertyMap /> }
 
-      </div>
+      </MuiThemeProvider>
+
     )
   }
 }
 
-export default App;
+export default withStyles(styles)(App);
