@@ -36,7 +36,7 @@ class App extends Component {
   handleSubmitProperty = async e => {
     e.preventDefault();
 
-    // deconstruct the address and geocode to get coords
+    // destructure the address and geocode to get coords
     const { address } = this.state;
     await this.getPropertyCoords(address);
 
@@ -49,12 +49,17 @@ class App extends Component {
     
     const response = await axios.post('/api/property/add', { title, bedrooms, rent, address, coordinates });
 
+    // if db entry was success then clear the form and redirect to the MAP page
     if (response.status === 200) {
-      console.log("before page changed", response)
+      this.setState({ 
+        title: "",
+        bedrooms: "",
+        rent: "",
+        address: "",
+        coordinates: [],
+       })
       this.handleDecidePage("MAP");
     }
-
-    // TODO -- Redirect here to the Map page
   }
 
   getPropertyCoords = async address => {
