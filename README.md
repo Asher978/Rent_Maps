@@ -42,5 +42,8 @@ Become THE rental real-estate site for cities, Find apartments, roommates, etc.
   - [x] Mapbox - for providing custom Maplayers
   - [x] Google Places - parsing users addresses to coordinates -> [latitude, longitude]
 
+### Credits
+Full credit of this project's idea goes to [Varun Bhartia](https://github.com/vbhartia) who has given me the opportunity to develop!
+
 
 
