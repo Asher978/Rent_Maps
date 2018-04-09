@@ -34,14 +34,14 @@ class MapFilters extends Component {
   }
   
   render () {
-    const { classes, title, rent, bedroom, handleFilterChange, handleFilterBedrooms } = this.props;
+    const { classes, filter, handleFilterChange, handleFilterBedrooms } = this.props;
     return (
       <form className={classes.container}>
         <TextField
           id="Title"
           label="Title of Property"
           className={classes.textField}
-          value={title}
+          value={filter.title || ''}
           onChange={handleFilterChange('title')}
           margin="normal"
         />
@@ -49,7 +49,7 @@ class MapFilters extends Component {
         <TextField
           id="rent"
           label="Rent"
-          value={rent}
+          value={filter.rent || ''}
           className={classes.textField}
           onChange={handleFilterChange('rent')}
           margin="normal"
@@ -60,8 +60,8 @@ class MapFilters extends Component {
           select
           label="Select"
           className={classes.textField}
-          value={bedroom}
-          onChange={handleFilterChange('bedroom')}
+          value={filter.bedrooms || ''}
+          onChange={handleFilterChange('bedrooms')}
           SelectProps={{
             MenuProps: {
               className: classes.menu,
