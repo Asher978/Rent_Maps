@@ -25,7 +25,6 @@ const styles = theme => ({
 class Nav extends Component {
 
   render () {
-    console.log("nav props", this.props);
     const { classes, handleDecidePage } = this.props;
     return (
       <AppBar position="static" elevation={0}>
