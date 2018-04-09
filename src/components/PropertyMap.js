@@ -76,7 +76,7 @@ class PropertyMap extends Component {
         <Map center={position} zoom={zoom}>
             <TileLayer
               attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-              url="https://api.mapbox.com/styles/v1/asher978/cjfrj62eg64l42sp1xz9sa4u5/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYXNoZXI5NzgiLCJhIjoiY2pmcmo3YXduMGEyODMwcnVyYzNrc2toeSJ9.IjYJdTb5LcGkEQLIyl-geQ"
+              url="https://api.mapbox.com/styles/v1/asher978/cjfrj83ad64ti2smv09m6qm0b/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYXNoZXI5NzgiLCJhIjoiY2pmcm42dTU3MDVxaTJxczM3dm1ndjUwMiJ9.jqOnJvWmyibbEtrDY3zSCQ"
             />
 
             <MarkerClusterGroup>
