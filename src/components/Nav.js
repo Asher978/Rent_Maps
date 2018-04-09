@@ -47,12 +47,4 @@ class Nav extends Component {
   }
 }
 
-// const Na = () => {
-//   return (
-//     <nav className="navbar navbar-inverse">
-//       <h3 className="navbar-text center-text">Rent Maps</h3>
-//     </nav>
-//   )
-// }
-
 export default withStyles(styles)(Nav);

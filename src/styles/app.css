@@ -3,3 +3,12 @@
   height: 750px;
   width: 100%;
 }
+
+
+.hero {
+  background-image: url("../assets/main.jpg");
+  background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+  height: 500px;
+}

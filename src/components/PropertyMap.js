@@ -19,6 +19,11 @@ class PropertyMap extends Component {
     zoom: 14,
     posReceived: true,
     properties: null,
+    filter: {
+      bedrooms: null,
+      rent: null,
+      title: ''
+    }
   }
 
   async componentDidMount () {
@@ -30,6 +35,12 @@ class PropertyMap extends Component {
     if (getProperties.status === 200) {
       this.setState({ properties: getProperties.data })
     };
+  }
+
+  handleFilterChange = name => event => {
+    let upDatedFilter = { ...this.state.filter };
+    upDatedFilter[name] = parseInt(event.target.value);
+    this.setState({ filter: upDatedFilter });
   }
 
   getPosition = () => {
@@ -47,10 +58,21 @@ class PropertyMap extends Component {
     })
   }
 
+  _filter = (property) => {
+    const { filter } = this.state;
+    return (
+      (!filter.bedrooms || (property.bedrooms === filter.bedrooms)) &&
+      (!filter.rent || (property.rent <= filter.rent))
+    )
+  }
+
   renderPropertyMarkers = () => {
-    const { properties } = this.state;
+    const { properties, filter } = this.state;
     if (properties) {
-      return properties.map((property, i) => {
+      return properties
+      .filter(this._filter)
+      .map((property, i) => {
+        console.log("filtered property", property);
         const { title, bedrooms, rent, coordinates } = property;
         return (
           <Marker key={i} position={coordinates}>
@@ -87,11 +109,17 @@ class PropertyMap extends Component {
     )
 }
   render () {
-    const { posReceived } = this.state;
+    const { posReceived, filter } = this.state;
     const { classes } = this.props;
     return (
       <div className={classes.mapContainer}>
-        <MapFilters />
+
+        <MapFilters
+          filter={filter}
+          handleFilterChange={this.handleFilterChange}
+          handleFilterBedrooms={this.handleFilterBedrooms}
+        />
+
         { posReceived && this.renderMap() }
       </div>
     )
