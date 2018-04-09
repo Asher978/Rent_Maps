@@ -9,6 +9,9 @@ Potential Renters can easily compare prices with what neighbors pay in the area 
 
 For real-estate purchases, most information is available online (previous selling price, neighbor's price, land value, etc.). Yet for renting, none of this information is available for renters or landlords - SF & NYC Index aims to change that by bringing price transparency to the market.
 
+### Project Updates
+This project is undergoing major development... Consistent updates will be provided. A deployed version will be launched very soon where we will ask `USERS` to start providing the `DATA`
+
 
 ### Why:
   * There is very little price transparency when renting an apartment. It is difficult to:
@@ -34,13 +37,14 @@ The key to making SF & NYC Index work is utilizing a pay to play model - where u
 ### Long Term:
 Become THE rental real-estate site for cities, Find apartments, roommates, etc.
 
+
 ### Stack Used
   - [x] Frontend is wrapped with React
   - [x] Backend is on Node/Express/Mongo
   - [x] Material-ui, SASS - styling
   - [x] React Leaflet - For Maps Integrations
   - [x] Mapbox - for providing custom Maplayers
-  - [x] Google Places - parsing users addresses to coordinates -> [latitude, longitude]
+  - [x] Google Places - parsing users addresses to `coordinates => [latitude, longitude]`
 
 ### Credits
 Full credit of this project's idea goes to [Varun Bhartia](https://github.com/vbhartia) who has given me the opportunity to develop!
