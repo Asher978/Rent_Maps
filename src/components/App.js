@@ -14,6 +14,7 @@ import Nav from './Nav';
 import Drawer from './Drawer';
 import PropertyMap from './PropertyMap';
 import AddProperty from './AddProperty';
+import Landing from './Landing';
 
 const defaultTheme = createMuiTheme();
 const purpleTheme = createMuiTheme({
@@ -48,7 +49,7 @@ const styles = theme => ({
 
 class App extends Component {
   state = {
-    currentPage: "",
+    currentPage: "LAND",
     title: "",
     bedrooms: "",
     rent: "",
@@ -137,7 +138,10 @@ class App extends Component {
             toggleDrawer={this.toggleDrawer}
             handleDecidePage={this.handleDecidePage}
           />
+        { currentPage === 'LAND' && <Landing /> }
+        
         </div>
+
 
         { 
            currentPage === 'ADD' && <AddProperty
