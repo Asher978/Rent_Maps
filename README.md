@@ -1,4 +1,4 @@
-# SF & NYC Index <img src="http://sfrentindex.com/images/landlord.svg" height="70px">
+# <img src="http://sfrentindex.com/images/landlord.svg" height="70px"> SF & NYC Index 
 
 
 ### Description
@@ -35,12 +35,12 @@ The key to making SF & NYC Index work is utilizing a pay to play model - where u
 Become THE rental real-estate site for cities, Find apartments, roommates, etc.
 
 ### Stack Used
-  * Frontend is wrapped with React
-  * Backend is on Node/Express/Mongo
-  * Material-ui, SASS - styling
-  * React Leaflet - For Maps Integrations
-  * Mapbox - for providing custom Maplayers
-  * Google Places - parsing users addresses to coordinates -> [latitude, longitude]
+  - [x] Frontend is wrapped with React
+  - [x] Backend is on Node/Express/Mongo
+  - [x] Material-ui, SASS - styling
+  - [x] React Leaflet - For Maps Integrations
+  - [x] Mapbox - for providing custom Maplayers
+  - [x] Google Places - parsing users addresses to coordinates -> [latitude, longitude]
 
 
 
