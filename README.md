@@ -1,4 +1,5 @@
 # SF & NYC Index
+<img src="http://sfrentindex.com/images/landlord.svg">
 
 ### Description
 
