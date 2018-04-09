@@ -24,10 +24,6 @@ const styles = theme => ({
 
 
 class MapFilters extends Component {
-  state = {
-    bedroom: 0,
-    rent: 0,
-  }
 
   bedroomsList = num => {
     let list = [];
@@ -37,29 +33,25 @@ class MapFilters extends Component {
     return list;
   }
   
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value,
-    });
-  }
-  
   render () {
-    const { classes } = this.props;
+    const { classes, title, rent, bedroom, handleFilterChange, handleFilterBedrooms } = this.props;
     return (
       <form className={classes.container}>
         <TextField
-          id="kind"
-          label="Kind of Property"
+          id="Title"
+          label="Title of Property"
           className={classes.textField}
-          value={this.state.kind}
+          value={title}
+          onChange={handleFilterChange('title')}
           margin="normal"
         />
 
         <TextField
           id="rent"
           label="Rent"
-          value={this.state.rent}
+          value={rent}
           className={classes.textField}
+          onChange={handleFilterChange('rent')}
           margin="normal"
         />
 
@@ -68,8 +60,8 @@ class MapFilters extends Component {
           select
           label="Select"
           className={classes.textField}
-          value={this.state.bedroom}
-          onChange={this.handleChange('bedroom')}
+          value={bedroom}
+          onChange={handleFilterChange('bedroom')}
           SelectProps={{
             MenuProps: {
               className: classes.menu,
