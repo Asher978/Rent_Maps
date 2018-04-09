@@ -7,7 +7,7 @@ SF & NYC Index provides accurate, up-to-date, rent information for properties ar
 
 Potential Renters can easily compare prices with what neighbors pay in the area and historical trends to see if they are paying the right amount. Similarly landlords can know how to easily price their properties.
 
-For real-estate purchases, most information is available online (previous selling price, neighbor's price, land value, etc.). Yet for renting, none of this information is available for renters or landlords - SFRent.Me aims to change that by bringing price transparency to the market.
+For real-estate purchases, most information is available online (previous selling price, neighbor's price, land value, etc.). Yet for renting, none of this information is available for renters or landlords - SF & NYC Index aims to change that by bringing price transparency to the market.
 
 
 ### Why:
@@ -22,13 +22,13 @@ For real-estate purchases, most information is available online (previous sellin
 ### How will it work?
 
 The key to making SF & NYC Index work is utilizing a pay to play model - where users have to contribute rent information in order to access other people’s info:
-  * SFRent.Me will contain crowdsourced rent information of others
+  * SF & NYC Index will contain crowdsourced rent information of others
 
   * In order to see rent information, individual users will have to either:
     * Contribute their own rent information
     * Share the website with two other people, who have to sign up
 
-  * We will seed SFRent.ME with rent information from our friends, craigslist, and
+  * We will seed SF & NYC Index with rent information from our friends, craigslist, and
   other sources. We will seed the platform with 100 data points before launching fully.
 
 ### Long Term:
