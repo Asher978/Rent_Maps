@@ -8,6 +8,11 @@ import ZoomOutMap from 'material-ui-icons/ZoomOutMap';
 class MyDrawer extends Component {
 
 
+  handleDecide = (page) => {
+    this.props.toggleDrawer()
+    this.props.handleDecidePage(page);
+  }
+
   render () {
     const { handleDecidePage } = this.props;
     return (
@@ -16,21 +21,16 @@ class MyDrawer extends Component {
         onClose={this.props.toggleDrawer}
         type="persistent"
         >
-        <div
-          tabIndex={0}
-          role="button"
-          onClick={this.props.toggleDrawer}
-          onKeyDown={this.props.toggleDrawer}
-        >
+        <div tabIndex={0}>
           <List>
-            <ListItem button onClick={() => handleDecidePage("ADD")}>
+            <ListItem button onClick={() => this.handleDecide("ADD")}>
               <ListItemIcon>
                 <AddCircle />
               </ListItemIcon>
               <ListItemText primary="Add a Property" />
             </ListItem>
             <Divider/>
-            <ListItem button onClick={() => handleDecidePage("MAP")}>
+            <ListItem button onClick={() => this.handleDecide("MAP")}>
               <ListItemIcon>
                 <ZoomOutMap />
               </ListItemIcon>
