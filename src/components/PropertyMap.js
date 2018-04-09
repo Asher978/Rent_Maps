@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { withStyles } from 'material-ui/styles';
 import { Map, Marker, Popup, TileLayer, Tooltip } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
+
+import MapFilters from './MapFilters';
+
+const styles = theme => ({
+  mapContainer: {
+    display: 'flex',
+  },
+})
 
 class PropertyMap extends Component {
   state = {
@@ -40,7 +49,6 @@ class PropertyMap extends Component {
 
   renderPropertyMarkers = () => {
     const { properties } = this.state;
-
     if (properties) {
       return properties.map((property, i) => {
         const { title, bedrooms, rent, coordinates } = property;
@@ -58,6 +66,8 @@ class PropertyMap extends Component {
     }
   }
 
+  
+
   renderMap () {
     const { lat, lng, zoom } = this.state;
     const position = [lat, lng];
@@ -66,7 +76,7 @@ class PropertyMap extends Component {
         <Map center={position} zoom={zoom}>
             <TileLayer
               attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              url="https://api.mapbox.com/styles/v1/asher978/cjfrj62eg64l42sp1xz9sa4u5/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYXNoZXI5NzgiLCJhIjoiY2pmcmo3YXduMGEyODMwcnVyYzNrc2toeSJ9.IjYJdTb5LcGkEQLIyl-geQ"
             />
 
             <MarkerClusterGroup>
@@ -78,13 +88,14 @@ class PropertyMap extends Component {
 }
   render () {
     const { posReceived } = this.state;
+    const { classes } = this.props;
     return (
-      <div>
-        <h1>Maps</h1>
+      <div className={classes.mapContainer}>
+        <MapFilters />
         { posReceived && this.renderMap() }
       </div>
     )
   }
 }
 
-export default PropertyMap;
+export default withStyles(styles)(PropertyMap);
