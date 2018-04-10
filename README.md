@@ -12,7 +12,8 @@ Potential Renters can easily compare prices with what neighbors pay in the area 
 For real-estate purchases, most information is available online (previous selling price, neighbor's price, land value, etc.). Yet for renting, none of this information is available for renters or landlords - SF & NYC Index aims to change that by bringing price transparency to the market.
 
 ### Project Updates
-This project is undergoing major development... Consistent updates will be provided. A deployed version will be launched very soon where we will ask `USERS` to start providing the `DATA`
+This project is undergoing major development... Consistent updates will be provided. ~~A deployed version will be launched very soon where we will ask `USERS` to start providing the `DATA`~~ 
+  - [x] Live version was realease - April 9th 
 
 
 ### Why:
