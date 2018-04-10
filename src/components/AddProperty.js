@@ -65,7 +65,7 @@ class AddProperty extends Component {
 
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => handleDecidePage("")} color="primary">
+          <Button onClick={() => handleDecidePage("LAND")} color="primary">
             Cancel
           </Button>
           <Button onClick={handleSubmitProperty} color="primary">
