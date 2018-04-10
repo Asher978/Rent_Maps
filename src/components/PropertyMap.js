@@ -96,7 +96,7 @@ class PropertyMap extends Component {
     const position = [lat, lng];
     console.log("Size", window.screen)
     return (
-        <Map center={position} zoom={zoom}>
+        <Map center={position} zoom={zoom} touchZoom={true}>
             <TileLayer
               attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
               url="https://api.mapbox.com/styles/v1/asher978/cjfrj83ad64ti2smv09m6qm0b/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYXNoZXI5NzgiLCJhIjoiY2pmcm42dTU3MDVxaTJxczM3dm1ndjUwMiJ9.jqOnJvWmyibbEtrDY3zSCQ"
