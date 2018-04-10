@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { withStyles } from 'material-ui/styles';
 import { Map, Marker, Popup, TileLayer, Tooltip } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import L from 'leaflet';
 
 import MapFilters from './MapFilters';
-
-const styles = theme => ({
-  mapContainer: {
-    display: 'flex',
-  },
-})
 
 const createClusterCustomIcon = function (cluster) {
   return L.divIcon({
@@ -101,7 +94,7 @@ class PropertyMap extends Component {
   renderMap () {
     const { lat, lng, zoom } = this.state;
     const position = [lat, lng];
-
+    console.log("Size", window.screen)
     return (
         <Map center={position} zoom={zoom}>
             <TileLayer
@@ -124,7 +117,7 @@ class PropertyMap extends Component {
     const { posReceived, filter } = this.state;
     const { classes } = this.props;
     return (
-      <div className={classes.mapContainer}>
+      <div className="PropertyMap-mapContainer-206">
 
         <MapFilters
           filter={filter}
@@ -138,4 +131,4 @@ class PropertyMap extends Component {
   }
 }
 
-export default withStyles(styles)(PropertyMap);
+export default PropertyMap;

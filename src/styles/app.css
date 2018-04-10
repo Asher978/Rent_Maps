@@ -26,6 +26,10 @@
   width: 40px;
 }
 
+.PropertyMap-mapContainer-206 {
+  display: flex;
+}
+
 @media only screen and (max-width: 600px) {
 
   .PropertyMap-mapContainer-206 {
