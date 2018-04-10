@@ -14,10 +14,12 @@
 }
 
 .marker-cluster-custom {
-  background: #9370db;
+  background: #24C6DC;
+  background: -webkit-linear-gradient(to top, #514A9D, #24C6DC);
+  background: linear-gradient(to top, #514A9D, #24C6DC);
   border: 3px solid #ededed;
   border-radius: 50%;
-  color: #ededed;
+  color: white;
   height: 40px;
   line-height: 37px;
   text-align: center;
