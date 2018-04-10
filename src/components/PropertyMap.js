@@ -3,6 +3,7 @@ import axios from 'axios';
 import { withStyles } from 'material-ui/styles';
 import { Map, Marker, Popup, TileLayer, Tooltip } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
+import L from 'leaflet';
 
 import MapFilters from './MapFilters';
 
@@ -11,6 +12,14 @@ const styles = theme => ({
     display: 'flex',
   },
 })
+
+const createClusterCustomIcon = function (cluster) {
+  return L.divIcon({
+    html: `<span>${cluster.getChildCount()}</span>`,
+    className: 'marker-cluster-custom',
+    iconSize: L.point(40, 40, true),
+  });
+};
 
 class PropertyMap extends Component {
   state = {
@@ -100,7 +109,11 @@ class PropertyMap extends Component {
               url="https://api.mapbox.com/styles/v1/asher978/cjfrj83ad64ti2smv09m6qm0b/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYXNoZXI5NzgiLCJhIjoiY2pmcm42dTU3MDVxaTJxczM3dm1ndjUwMiJ9.jqOnJvWmyibbEtrDY3zSCQ"
             />
 
-            <MarkerClusterGroup>
+            <MarkerClusterGroup
+              showCoverageOnHover={false}
+              spiderfyDistanceMultiplier={2}
+              iconCreateFunction={createClusterCustomIcon}
+            >
               { this.renderPropertyMarkers() }
             </MarkerClusterGroup>
 
