@@ -13,7 +13,8 @@ For real-estate purchases, most information is available online (previous sellin
 
 ### Project Updates
 This project is undergoing major development... Consistent updates will be provided. ~~A deployed version will be launched very soon where we will ask `USERS` to start providing the `DATA`~~ 
-  - [x] Live version was realease - April 9th 
+  - [x] Live version was realease - April 9th
+  - [x] Live version updated _colored raduis is shown arounf clusters so they can be easily identified on the map_
 
 
 ### Why:
