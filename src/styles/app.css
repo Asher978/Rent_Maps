@@ -25,3 +25,11 @@
   text-align: center;
   width: 40px;
 }
+
+@media only screen and (max-width: 400px) {
+
+  .PropertyMap-mapContainer-206 {
+    display: flex;
+    flex-direction: column;
+  }
+}
