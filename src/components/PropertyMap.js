@@ -72,7 +72,6 @@ class PropertyMap extends Component {
       return properties
       .filter(this._filter)
       .map((property, i) => {
-        console.log("filtered property", property);
         const { title, bedrooms, rent, coordinates } = property;
         return (
           <Marker key={i} position={coordinates}>
