@@ -27,7 +27,7 @@ class MapFilters extends Component {
 
   bedroomsList = num => {
     let list = [];
-    for (let i=0; i<num; i++) {
+    for (let i=1; i<num; i++) {
       list.push(<MenuItem key={i} value={i}>{i}</MenuItem>)
     }
     return list;
