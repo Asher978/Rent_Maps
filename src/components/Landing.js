@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid';
@@ -10,72 +9,30 @@ import GreyMap from '../assets/grey_map.svg';
 import Landlord from '../assets/landlord.svg';
 import House from '../assets/light_grey_house.svg';
 
-
-const styles = theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  hero: {
-    padding: theme.spacing.unit * 2,
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    height: '25rem',
-    backgroundImage: `url(${Image})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-  },
-  heroText: {
-    color: 'black',
-    marginTop: '5rem',
-    fontSize: '2.5rem',
-    fontWeight: 500
-  },
-  paper: {
-    padding: theme.spacing.unit * 2,
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    height: '8rem',
-    marginTop: '.6rem'
-  },
-  card: {
-    maxWidth: 345,
-    marginTop: '1rem',
-  },
-  media: {
-    height: 100,
-    width: 100,
-    margin: '0 auto'
-  },
-  cardText: {
-    color: '#24C6DC',
-  }
-});
-
 class Landing extends Component {
 
   render () {
     const { classes } = this.props;
     return (
-      <div className="heo">
+      <div>
         <Grid item xs={12}>
-          <Paper className={classes.hero}>
-            <Typography className={classes.heroText}>
+          <Paper className="hero">
+            <Typography className="hero__heading">
               See Actual Rent Data Across San Francisco & New York
             </Typography>
           </Paper>
         </Grid>
         <Divider light />
-        <Grid container justify="center" align="center" spacing={24}>
-          <Grid item xs={4}>
-          <Card raised className={classes.card}>
+        <Grid container justify="center" align="center" spacing={24} className="card__container">
+          <Grid item>
+          <Card raised className="landing__card">
             <CardMedia
-              className={classes.media}
+              className="card__media"
               image={Landlord}
               title="Contemplative Reptile"
             />
             <CardContent>
-              <Typography gutterBottom className={classes.cardText} variant="headline" component="h2">
+              <Typography gutterBottom className="card__text" variant="headline" component="h2">
                 Leverage
               </Typography>
               <Typography component="p">
@@ -85,15 +42,15 @@ class Landing extends Component {
           </Card>
           </Grid>
 
-          <Grid item xs={4}>
-          <Card raised className={classes.card}>
+          <Grid item>
+          <Card raised className="landing__card">
             <CardMedia
-              className={classes.media}
+              className="card__media"
               image={House}
               title="Contemplative Reptile"
             />
             <CardContent>
-              <Typography className={classes.cardText} gutterBottom variant="headline" component="h2">
+              <Typography className="card__text" gutterBottom variant="headline" component="h2">
                 Insight
               </Typography>
               <Typography component="p">
@@ -103,15 +60,15 @@ class Landing extends Component {
           </Card>
           </Grid>
 
-          <Grid item xs={4}>
-          <Card raised className={classes.card}>
+          <Grid item>
+          <Card raised className="landing__card">
             <CardMedia
-              className={classes.media}
+              className="card__media"
               image={GreyMap}
               title="Contemplative Reptile"
             />
             <CardContent>
-              <Typography gutterBottom className={classes.cardText} variant="headline" component="h2">
+              <Typography gutterBottom className="card__text" variant="headline" component="h2">
                 Transparency
               </Typography>
               <Typography component="p">
@@ -127,4 +84,4 @@ class Landing extends Component {
   }
 }
 
-export default withStyles(styles)(Landing)
+export default Landing;
