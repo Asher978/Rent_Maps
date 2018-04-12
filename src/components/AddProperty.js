@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
-
+import { InputAdornment } from 'material-ui/Input';
 import Dialog, {
   DialogActions,
   DialogContent,
@@ -13,9 +13,9 @@ import Dialog, {
 class AddProperty extends Component {
 
   render() {
-    const { title, bedrooms, rent, address, handleInputChange, handleSubmitProperty, handleDecidePage } = this.props;
+    const { title, bedrooms, rent, address, handleInputChange, handleSubmitProperty, handleDecidePage, fullScreen } = this.props;
     return (
-      <Dialog open>
+      <Dialog open aria-labelledby="responsive-dialog-title" fullScreen={fullScreen}>
         <DialogTitle>Property Information</DialogTitle>
         <DialogContent>
 
@@ -24,7 +24,7 @@ class AddProperty extends Component {
           </DialogContentText>
 
           <TextField
-            margin="dense"
+            InputLabelProps={{ style: { fontSize: '.7rem', } }}
             name="title"
             label="Property name ... (bedroom, condo, building ....)"
             type="text"
@@ -34,7 +34,7 @@ class AddProperty extends Component {
           />
 
           <TextField
-            margin="dense"
+            InputLabelProps={{ style: { fontSize: '.7rem', } }}
             name="bedrooms"
             label="No of bedrooms ... (1, 2, 3)"
             type="number"
@@ -44,17 +44,18 @@ class AddProperty extends Component {
           />
 
           <TextField
-            margin="dense"
+            InputLabelProps={{ style: { fontSize: '.7rem', } }}
             name="rent"
             label="Total rent ... ($700, $900 ...)"
             type="number"
             value={rent}
             onChange={handleInputChange}
+            InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment> }}
             fullWidth
           />
 
           <TextField
-            margin="dense"
+            InputLabelProps={{ style: { fontSize: '.7rem', } }}
             name="address"
             label="Address... (123 main st, Flushing, NY 11355)"
             type="text"

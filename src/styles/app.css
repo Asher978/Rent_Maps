@@ -61,6 +61,14 @@
   max-width: 350px;
   margin-top: 1rem;
   max-height: 350px;
+  transition: all .5s ease;
+}
+
+.landing__card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  cursor: pointer;
+  z-index: 100000000;
 }
 
 .card__container {
@@ -75,7 +83,7 @@
 }
 
 .card__text {
-  color: #24C6DC;
+  color: #24C6DC !important;
 }
 /* --------------END LANDING PAGE------------- */
 
